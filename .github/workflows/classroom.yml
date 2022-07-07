@@ -22,8 +22,10 @@ jobs:
           sudo wget -O riscv64-linux-musl-cross.tgz https://cloud.tsinghua.edu.cn/f/b07bac9bcfa14f1dae66/?dl=1
           sudo tar xzf riscv64-linux-musl-cross.tgz
           pwd
+          sudo cp /usr/local/riscv64-unknown-elf-gcc/bin/riscv64-unknown-elf-gcc /usr/bin
       - name: Config Riscv Path   
         run: |
+          riscv64-unknown-elf-gcc
           cd /home
           ls -l
           sudo touch /home/.bashrc
