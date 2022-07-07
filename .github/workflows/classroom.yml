@@ -33,7 +33,6 @@ jobs:
           source /home/.bashrc
       - name: Config test
         run: |
-          /usr/local/riscv64-unknown-elf-gcc/bin/riscv64-unknown-elf-gcc
           source /home/.bashrc
           cat /home/.bashrc
           echo "/usr/local"
