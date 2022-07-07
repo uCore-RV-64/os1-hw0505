@@ -29,6 +29,7 @@ jobs:
           source ~/.bashrc
       - name: Config test
         run: |
+          cat ~/.bashrc
           source ~/.bashrc
           echo "/usr/local"
           ls /usr/local
