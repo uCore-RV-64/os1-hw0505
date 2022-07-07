@@ -29,6 +29,7 @@ jobs:
           source ~/.bashrc
       - name: Config test
         run: |
+          source ~/.bashrc
           echo "/usr/local"
           ls /usr/local
           echo "riscv64-unknown-elf-gcc"
