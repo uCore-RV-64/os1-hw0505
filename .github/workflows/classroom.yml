@@ -33,6 +33,7 @@ jobs:
           source /etc/profile
           echo "cat /etc/profile"
           sudo cat /etc/profile
+          riscv64-unknown-elf-gcc
       - name: Config test
         run: |
           riscv64-unknown-elf-gcc
