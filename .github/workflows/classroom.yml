@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install riscv
         run: |
+          cd /usr/local
           sudo wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
           sudo tar xzf riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
           sudo mv riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14 riscv64-unknown-elf-gcc
@@ -22,8 +23,8 @@ jobs:
           sudo tar xzf riscv64-linux-musl-cross.tgz
           sudo touch .env
           sudo chmod 777 .env
-          sudo echo "export PATH=\"riscv64-unknown-elf-gcc/bin:\$PATH\"" >> .env
-          sudo echo "export PATH=\"riscv64-linux-musl-cross/bin:\$PATH\"" >> .env
+          sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> .env
+          sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> .env
           riscv64-unknown-elf-gcc
           riscv64-linux-musl-gcc
       - name: Install compile env
