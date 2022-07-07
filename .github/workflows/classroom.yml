@@ -25,7 +25,9 @@ jobs:
           sudo chmod 777 .env
           sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> .env
           sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> .env
+          echo "test riscv64-unknown-elf-gcc"
           riscv64-unknown-elf-gcc
+          echo "test riscv64-linux-musl-gcc"
           riscv64-linux-musl-gcc
       - name: Install compile env
         run: |
