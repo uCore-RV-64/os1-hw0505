@@ -54,6 +54,8 @@ jobs:
           qemu-system-riscv64 --version
       - name: Config test
         run: |
+          echo "riscv64-unknown-elf-gcc"
+          riscv64-unknown-elf-gcc
           pwd
           ls
       - name: Config Path
