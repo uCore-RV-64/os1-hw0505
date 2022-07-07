@@ -20,6 +20,12 @@ jobs:
           sudo mv riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14 riscv64-unknown-elf-gcc
           sudo wget -O riscv64-linux-musl-cross.tgz https://cloud.tsinghua.edu.cn/f/b07bac9bcfa14f1dae66/?dl=1
           sudo tar xzf riscv64-linux-musl-cross.tgz
+          sudo touch .env
+          sudo chmod 777 .env
+          sudo echo "export PATH=\"riscv64-unknown-elf-gcc/bin:\$PATH\"" >> .env
+          sudo echo "export PATH=\"riscv64-linux-musl-cross/bin:\$PATH\"" >> .env
+          riscv64-unknown-elf-gcc
+          riscv64-linux-musl-cross
       - name: Install compile env
         run: |
           sudo apt install -y cmake
@@ -52,13 +58,9 @@ jobs:
           ls
       - name: Config Path
         run: |
-          sudo touch .env
-          sudo chmod 777 .env
-          sudo echo "export PATH=\"riscv64-unknown-elf-gcc/bin:\$PATH\"" >> .env
-          sudo echo "export PATH=\"riscv64-linux-musl-cross/bin:\$PATH\"" >> .env
-          sudo echo "export PATH=\"qemu-7.0.0:\$PATH\"" >> .env
-          sudo echo "export PATH=\"qemu-7.0.0/riscv64-softmmu:\$PATH\"" >> .env
-          sudo echo "export PATH=\"qemu-7.0.0/riscv64-linux-user:\$PATH\"" >> .env
+          sudo echo "export PATH=\"qemu-5.0.0:\$PATH\"" >> .env
+          sudo echo "export PATH=\"qemu-5.0.0/riscv64-softmmu:\$PATH\"" >> .env
+          sudo echo "export PATH=\"qemu-5.0.0/riscv64-linux-user:\$PATH\"" >> .env
           source .env
           qemu-system-riscv64 --version
           qemu-riscv64 --version
