@@ -31,12 +31,12 @@ jobs:
           sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> /home/.bashrc
           sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> /home/.bashrc
           cat /home/.bashrc
-          cat $PATH
           source /home/.bashrc
+          sudo visudo
       - name: Config test
         run: |
+          riscv64-unknown-elf-gcc
           source /home/.bashrc
-          cat /home/.bashrc
           echo "/usr/local"
           echo "riscv64-unknown-elf-gcc"
           pwd
