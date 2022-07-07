@@ -31,6 +31,8 @@ jobs:
           sudo sed -i '$a export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"' /etc/profile
           sudo sed -i '$a export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"' /etc/profile
           source /etc/profile
+          sudo cp /usr/local/riscv64-unknown-elf-gcc/bin/* /usr/bin
+          sudo cp /usr/local/riscv64-linux-musl-cross/bin/* /usr/bin
           echo "cat /etc/profile"
           sudo cat /etc/profile
       - name: Config test
