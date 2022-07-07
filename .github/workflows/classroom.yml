@@ -24,6 +24,8 @@ jobs:
           pwd
       - name: Config Riscv Path   
         run: |
+          cd /home
+          la -l
           sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> /home/.bashrc
           sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> /home/.bashrc
           source /home/.bashrc
