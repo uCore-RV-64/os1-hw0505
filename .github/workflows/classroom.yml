@@ -33,9 +33,6 @@ jobs:
           source /etc/profile
           echo "cat /etc/profile"
           sudo cat /etc/profile
-          cat $PATH
-          cat /home/.bashrc
-          source /home/.bashrc
       - name: Config test
         run: |
           riscv64-unknown-elf-gcc
