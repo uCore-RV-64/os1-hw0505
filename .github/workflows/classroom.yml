@@ -28,11 +28,12 @@ jobs:
           ls -l
           sudo touch /home/.bashrc
           sudo chmod 777 /home/.bashrc
-          sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> /home/.bashrc
-          sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> /home/.bashrc
+          sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> /etc/profile
+          sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> /etc/profile
+          cat /etc/profile
+          source /etc/profile
           cat /home/.bashrc
           source /home/.bashrc
-          sudo visudo
       - name: Config test
         run: |
           riscv64-unknown-elf-gcc
