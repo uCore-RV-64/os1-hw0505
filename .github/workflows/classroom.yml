@@ -37,7 +37,6 @@ jobs:
           sudo cat /etc/profile
       - name: Config test
         run: |
-          riscv64-unknown-elf-gcc
           source /home/.bashrc
           echo "/usr/local"
           echo "riscv64-unknown-elf-gcc"
