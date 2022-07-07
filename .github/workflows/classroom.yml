@@ -26,10 +26,12 @@ jobs:
         run: |
           cd /home
           ls -l
+          touch /home/.bashrc
           sudo chmod 777 /home/.bashrc
           sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> /home/.bashrc
           sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> /home/.bashrc
           source /home/.bashrc
+          cat /home/.bashrc
           echo "riscv64-unknown-elf-gcc"
           riscv64-unknown-elf-gcc      
       - name: Config test
