@@ -15,11 +15,19 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install riscv
         run: |
-          sudo wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
-          sudo tar xzf riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
-          sudo mv riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14 riscv64-unknown-elf-gcc
-          sudo wget -O riscv64-linux-musl-cross.tgz https://cloud.tsinghua.edu.cn/f/b07bac9bcfa14f1dae66/?dl=1
-          sudo tar xzf riscv64-linux-musl-cross.tgz
+          if [ ! -d riscv64-unknown-elf-gcc ]; then
+            echo "get riscv64-unknown-elf-gcc"
+            sudo wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.08/riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
+            sudo tar xzf riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14.tar.gz
+            sudo mv riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14 riscv64-unknown-elf-gcc
+          else
+            echo "riscv64-unknown-elf-gcc exit"
+          if [ ! -d riscv64-linux-musl-cross ]; then
+            echo "get riscv64-linux-musl-cross"
+            sudo wget -O riscv64-linux-musl-cross.tgz https://cloud.tsinghua.edu.cn/f/b07bac9bcfa14f1dae66/?dl=1
+            sudo tar xzf riscv64-linux-musl-cross.tgz
+          else
+            echo "riscv64-linux-musl-cross exit"
       - name: Install compile env
         run: |
           sudo apt install -y cmake
@@ -48,4 +56,21 @@ jobs:
           fi
           sudo make install
           qemu-system-riscv64 --version
+      - name: Config test
+        run: |
+          pwd
+          ls
+      - name: Config Path
+        run: |
+          cd ../
+          sudo touch .env
+          sudo chmod 777 .env
+          sudo echo "export PATH=\"riscv64-unknown-elf-gcc/bin:\$PATH\"" >> .env
+          sudo echo "export PATH=\"riscv64-linux-musl-cross/bin:\$PATH\"" >> .env
+          sudo echo "export PATH=\"qemu-7.0.0:\$PATH\"" >> .env
+          sudo echo "export PATH=\"qemu-7.0.0/riscv64-softmmu:\$PATH\"" >> .env
+          sudo echo "export PATH=\"qemu-7.0.0/riscv64-linux-user:\$PATH\"" >> .env
+          source .env
+          qemu-system-riscv64 --version
+          qemu-riscv64 --version
       - uses: education/autograding@v1
