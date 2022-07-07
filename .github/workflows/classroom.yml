@@ -39,7 +39,6 @@ jobs:
           cat /home/.bashrc
           echo "/usr/local"
           echo "riscv64-unknown-elf-gcc"
-          riscv64-unknown-elf-gcc
           pwd
           ls
       - name: Install compile env
