@@ -23,9 +23,9 @@ jobs:
           sudo tar xzf riscv64-linux-musl-cross.tgz
           pwd
           sudo cp /usr/local/riscv64-unknown-elf-gcc/bin/riscv64-unknown-elf-gcc /usr/bin
+          sudo cp /usr/local/riscv64-linux-musl-cross/bin/riscv64-linux-musl-gcc /usr/bin
       - name: Config Riscv Path   
         run: |
-          riscv64-unknown-elf-gcc
           cd /home
           ls -l
           sudo touch /home/.bashrc
@@ -70,10 +70,10 @@ jobs:
           qemu-system-riscv64 --version
       - name: Config Path
         run: |
-          sudo echo "export PATH=\"qemu-5.0.0:\$PATH\"" >> ~/.bashrc
-          sudo echo "export PATH=\"qemu-5.0.0/riscv64-softmmu:\$PATH\"" >> ~/.bashrc
-          sudo echo "export PATH=\"qemu-5.0.0/riscv64-linux-user:\$PATH\"" >> ~/.bashrc
-          source ~/.bashrc
+          sudo echo "export PATH=\"qemu-5.0.0:\$PATH\"" >> /home/.bashrc
+          sudo echo "export PATH=\"qemu-5.0.0/riscv64-softmmu:\$PATH\"" >> /home/.bashrc
+          sudo echo "export PATH=\"qemu-5.0.0/riscv64-linux-user:\$PATH\"" >> /home/.bashrc
+          source /home/.bashrc
           qemu-system-riscv64 --version
           qemu-riscv64 --version
       - uses: education/autograding@v1
