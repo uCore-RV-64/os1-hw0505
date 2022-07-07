@@ -30,7 +30,8 @@ jobs:
           sudo chmod 777 /home/.bashrc
           sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> /etc/profile
           sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> /etc/profile
-          cat /etc/profile
+          echo "cat /etc/profile"
+          sudo cat /etc/profile
           source /etc/profile
           cat /home/.bashrc
           source /home/.bashrc
