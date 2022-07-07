@@ -21,11 +21,20 @@ jobs:
           sudo mv riscv64-unknown-elf-gcc-10.1.0-2020.08.2-x86_64-linux-ubuntu14 riscv64-unknown-elf-gcc
           sudo wget -O riscv64-linux-musl-cross.tgz https://cloud.tsinghua.edu.cn/f/b07bac9bcfa14f1dae66/?dl=1
           sudo tar xzf riscv64-linux-musl-cross.tgz
+          pwd
       - name: Config Riscv Path   
         run: |
           sudo echo "export PATH=\"/usr/local/riscv64-unknown-elf-gcc/bin:\$PATH\"" >> ~/.bashrc
           sudo echo "export PATH=\"/usr/local/riscv64-linux-musl-cross/bin:\$PATH\"" >> ~/.bashrc
           source ~/.bashrc
+      - name: Config test
+        run: |
+          echo "/usr/local"
+          ls /usr/local
+          echo "riscv64-unknown-elf-gcc"
+          riscv64-unknown-elf-gcc
+          pwd
+          ls
       - name: Install compile env
         run: |
           sudo apt install -y cmake
@@ -52,12 +61,6 @@ jobs:
           fi
           sudo make install
           qemu-system-riscv64 --version
-      - name: Config test
-        run: |
-          echo "riscv64-unknown-elf-gcc"
-          riscv64-unknown-elf-gcc
-          pwd
-          ls
       - name: Config Path
         run: |
           sudo echo "export PATH=\"qemu-5.0.0:\$PATH\"" >> ~/.bashrc
