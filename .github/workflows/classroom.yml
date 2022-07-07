@@ -31,20 +31,18 @@ jobs:
       - name: Cache QEMU
         uses: actions/cache@v3
         with:
-          path: qemu-7.0.0
-          key: qemu-7.0.0-x86_64-riscv64
+          path: qemu-5.0.0
+          key: qemu-5.0.0-x86_64-riscv64
       - name: Install QEMU
         run: |
-          sudo apt-get update
-          sudo apt-get install ninja-build -y
-          if [ ! -d qemu-7.0.0 ]; then
-            wget https://download.qemu.org/qemu-7.0.0.tar.xz
-            tar -xf qemu-7.0.0.tar.xz
-            cd qemu-7.0.0
-            ./configure --target-list=riscv64-softmmu
-            make -j
+          if [ ! -d qemu-5.0.0 ]; then
+            sudo wget https://download.qemu.org/qemu-5.0.0.tar.xz
+            sudo tar xJf qemu-5.0.0.tar.xz
+            cd qemu-5.0.0
+            sudo ./configure --target-list=riscv64-softmmu,riscv64-linux-user
+            sudo make -j$(nproc)
           else
-            cd qemu-7.0.0
+            cd qemu-5.0.0
           fi
           sudo make install
           qemu-system-riscv64 --version
@@ -54,7 +52,6 @@ jobs:
           ls
       - name: Config Path
         run: |
-          cd ../
           sudo touch .env
           sudo chmod 777 .env
           sudo echo "export PATH=\"riscv64-unknown-elf-gcc/bin:\$PATH\"" >> .env
